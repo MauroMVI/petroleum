@@ -102,12 +102,12 @@ def prep_data_for_pd(path_destination, encoding="ISO-8859-1"):
     return header_rows, skiprows
 
 
+url = 'https://sih.hidrocarburos.gob.mx/downloads/PRODUCCION_POZOS.zip'
+filename = 'POZOS_COMPILADO.csv'
+download_zip(url, filename)
+shutil.move(path_src, path_destination)
 date = get_strdate()
 path_src, path_destination = data_paths(date)
 header_rows, skiprows = prep_data_for_pd(path_destination)
 print(header_rows)
 print(skiprows)
-# url = 'https://sih.hidrocarburos.gob.mx/downloads/PRODUCCION_POZOS.zip'
-# filename = 'POZOS_COMPILADO.csv'
-# download_zip(url, filename)
-# shutil.move(path_src, path_destination)
