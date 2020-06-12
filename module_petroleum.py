@@ -157,6 +157,6 @@ def csv_to_dataframe(path_destination):
     # Returns DataFrame
     return df
 
-path_destination = 'data/20200612_POZOSCOMPILADO.csv'
+filename = 'data/POZOS_COMPILADO.csv'
 df = csv_to_dataframe(path_destination)
 print(df)
