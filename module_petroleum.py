@@ -5,14 +5,17 @@ import csv
 
 
 
-def download_zip(url, save_path):
-    r = requests.get(url, stream=True)
-    z = zipfile.ZipFile(io.BytesIO(r.content))
-    z.extract(filename)
+def download_data(url, save_path):
+    with requests.get(url, stream=True) as r:
+        print(f"Status code: {r.status_code}")
+        with io.BytesIO(r.content) as bf:
+            with zipfile.ZipFile(bf) as zf:
+                zf.extract(filename)
+
 
 
 
 url = 'https://sih.hidrocarburos.gob.mx/downloads/PRODUCCION_POZOS.zip'
 filename = 'POZOS_COMPILADO.csv'
-save_path = '/home/mmvi/mexico/petroleum/data'
-download_zip(url, filename)
+save_path = '/petroleum/data'
+download_data(url, filename)
