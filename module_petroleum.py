@@ -40,14 +40,14 @@ def get_strdate():
     # Returns desired string.
     return date
 
-def data_paths(date):
+def data_paths(date, filename):
     """
     This function prepares the paths and new name of the file, 
     with the format I desire. In this case, date_filename.csv. 
     Date comes from get_strdate() function.
     """
     # Standard name of the file, the SIH always put it like this.
-    path_src = 'POZOS_COMPILADO.csv'
+    path_src = filename
     # Path destination, this part also sets new name of file.
     path_destination = '/home/mmvi/mexico/petroleum'
     path_destination += f'/data/{date}_POZOSCOMPILADO.csv'
@@ -101,13 +101,19 @@ def prep_data_for_pd(path_destination, encoding="ISO-8859-1"):
     # Returns the headers of DataFrame in uppercase and number of rows to skip.
     return header_rows, skiprows
 
+def download_data(url, filename):
+    """
+    This function calls all the other functions needed to download the data,
+    save it at desired location and rename the file.
+    """
+    date = get_strdate()
+    path_src, path_destination = data_paths(date, filename)
+    download_zip(url, filename)
+    shutil.move(path_src, path_destination)
 
 url = 'https://sih.hidrocarburos.gob.mx/downloads/PRODUCCION_POZOS.zip'
 filename = 'POZOS_COMPILADO.csv'
-download_zip(url, filename)
-shutil.move(path_src, path_destination)
-date = get_strdate()
-path_src, path_destination = data_paths(date)
-header_rows, skiprows = prep_data_for_pd(path_destination)
-print(header_rows)
-print(skiprows)
+download_data(url, filename)
+# header_rows, skiprows = prep_data_for_pd(path_destination)
+# print(header_rows)
+# print(skiprows)
