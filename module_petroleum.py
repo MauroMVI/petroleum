@@ -146,9 +146,15 @@ def create_dataframe(path_destination, header_rows, skiprow,
     return df
 
 def csv_to_dataframe(path_destination):
+    """
+    This function generates a DataFrame from the csv file downloaded from SIH.
+    """
+    # Calls function to obtain information required to create DataFrame.
     header_rows, skiprow, dtypes = prep_data_for_pd(path_destination)
+    # Calls function that creates DataFrame and assigns to variable.
     df = create_dataframe(path_destination, header_rows, skiprow, dtypes)
 
+    # Returns DataFrame
     return df
 
 path_destination = 'data/20200612_POZOSCOMPILADO.csv'
