@@ -157,6 +157,11 @@ def csv_to_dataframe(path_destination):
     # Returns DataFrame
     return df
 
+def create_nationaldf(df):
+
+    df_national = df.groupby(['FECHA']).sum()
+    return df_national
 path_destination = 'data/20200612_POZOSCOMPILADO.csv'
 df = csv_to_dataframe(path_destination)
-print(df)
+df_national = create_nationaldf(df)
+print(df_national)

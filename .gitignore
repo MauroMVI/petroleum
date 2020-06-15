@@ -128,5 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#Data folder from local
+# Data folder from local
 data/
